@@ -326,7 +326,7 @@ class CNKIExportPlugin extends PubObjectsExportPlugin implements HasTaskSchedule
     }
 
     /**
-     * Build the delivered document's filename (without extension): {articleId}_VoR{versionMajor}.
+     * Build the delivered document's filename (without extension): {acronym}_{articleId}_VoR{versionMajor}.
      * Only the Version of Record is ever exportable here, so the version-stage code is
      * always "VoR" -- see PubObjectsExportPlugin::getExportableVersionStages().
      */
@@ -336,7 +336,17 @@ class CNKIExportPlugin extends PubObjectsExportPlugin implements HasTaskSchedule
         $fallbackId = $object instanceof Submission ? $object->getId() : $object->getData('submissionId');
         $articleId = ($context->getData('enableArticleNumber') ? $publication->getData('articleNumber') : null) ?: $fallbackId;
 
-        return $articleId . '_VoR' . $publication->getData('versionMajor');
+        return $this->buildAcronym($context) . '_' . $this->sanitizeForFileName((string) $articleId) . '_VoR' . $publication->getData('versionMajor');
+    }
+
+    /**
+     * Replace characters unsafe for a filename with underscores, collapsing runs into one --
+     * e.g. a migrated article number like "1:137" becomes "1_137", not "1137" (which would
+     * lose the separator and could then collide with another article literally numbered 1137).
+     */
+    protected function sanitizeForFileName(string $value): string
+    {
+        return preg_replace('/[^a-zA-Z0-9\-]+/', '_', $value);
     }
 
     /**
