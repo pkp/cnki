@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-19T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-08-19T00:00:00+00:00\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "plugins.importexport.cnki.displayName"
+msgstr "CNKI Export Plugin"
+
+msgid "plugins.importexport.cnki.description"
+msgstr ""
+"This plugin exports your journal's Version of Record articles to CNKI (China National Knowledge "
+"Infrastructure). Only the uploaded JATS full-text document is delivered. Content may be downloaded "
+"for later delivery to CNKI, or delivered directly to your account on the CNKI FTP server by "
+"configuring your credentials below."
+
+msgid "plugins.importexport.cnki.description.short"
+msgstr ""
+"This plugin exports your journal's Version of Record articles to CNKI. Content may be downloaded"
+" for later delivery to CNKI, or delivered directly to your account on the CNKI FTP server."
+
+msgid "plugins.importexport.cnki.ftpLibraryMissing"
+msgstr ""
+"<blockquote style=\"border: 1px solid; padding: 1em;\"><strong>⚠️ Warning:</strong> "
+"The <code>league/flysystem-ftp</code> library is missing from your server. To install it, run:\n"
+"<pre><code>composer -d lib/pkp require league/flysystem-ftp</code></pre>"
+"...or upgrade to a newer release of OJS. Until this is resolved, <strong>deposits will not work</strong>.</blockquote>"
+
+msgid "plugins.importexport.cnki.endpoint"
+msgstr "CNKI FTP Account"
+
+msgid "plugins.importexport.cnki.host"
+msgstr "Hostname"
+
+msgid "plugins.importexport.cnki.username"
+msgstr "Username"
+
+msgid "plugins.importexport.cnki.password"
+msgstr "Password"
+
+msgid "plugins.importexport.cnki.path"
+msgstr "Path (optional)"
+
+msgid "plugins.importexport.cnki.port"
+msgstr "Port (optional, defaults to 21)"
+
+msgid "plugins.importexport.cnki.submit.success"
+msgstr "Articles submitted for delivery."
+
+msgid "plugins.importexport.cnki.settings.form.automaticRegistration.description"
+msgstr ""
+"OJS will deliver content to CNKI automatically once it is published. Please note that this may "
+"take a short amount of time after publication to process (e.g. depending on "
+"your cronjob configuration). You can check for all undelivered content in the export tab."
+
+msgid "plugins.importexport.cnki.settings.form.accountIncomplete"
+msgstr "Please provide the hostname, username and password, or leave all three blank."
+
+msgid "plugins.importexport.cnki.settings.form.automaticRegistrationRequiresAccount"
+msgstr "Automatic registration requires a complete FTP account: please provide the hostname, username and password."
+
+msgid "plugins.importexport.cnki.senderTask.name"
+msgstr "CNKI automatic delivery task"
+
+msgid "plugins.importexport.cnki.export.failure.settings"
+msgstr "To deliver content to CNKI you must set up the FTP account in the settings tab."
+
+msgid "plugins.importexport.cnki.export.failure.creatingCollectionFile"
+msgstr "Failed to create the zip file for the export."
+
+msgid "plugins.importexport.cnki.export.failure.noUploadedJats"
+msgstr "'{$param}' has no uploaded JATS full-text document. CNKI requires one, so it cannot be exported/deposited."
+
+msgid "plugins.importexport.cnki.export.failure.missingArticleNumber"
+msgstr "'{$param}' has no article number set. This journal requires one for export/deposit."
+
+msgid "plugins.generic.cnki.displayName"
+msgstr "CNKI Plugin"
+
+msgid "plugins.generic.cnki.description"
+msgstr "Exports and delivers the Version of Record's uploaded JATS full-text document to CNKI."
