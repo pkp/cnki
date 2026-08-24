@@ -15,6 +15,7 @@
 namespace APP\plugins\generic\cnki;
 
 use APP\plugins\PubObjectsExportGenericPlugin;
+use PKP\plugins\Hook;
 use PKP\plugins\PluginRegistry;
 
 class CNKIPlugin extends PubObjectsExportGenericPlugin
@@ -49,6 +50,26 @@ class CNKIPlugin extends PubObjectsExportGenericPlugin
     {
         PluginRegistry::register('importexport', new CNKIExportPlugin(), $this->getPluginPath());
         $this->exportPlugin = PluginRegistry::getPlugin('importexport', 'CNKIExportPlugin');
+    }
+
+    /**
+     * @copydoc PubObjectsExportGenericPlugin::handlePublicationPublishing()
+     *
+     * No-op: CNKI has no update-in-place path, so marking a record stale here is never useful.
+     */
+    public function handlePublicationPublishing($hookName, $params): bool
+    {
+        return Hook::CONTINUE;
+    }
+
+    /**
+     * @copydoc PubObjectsExportGenericPlugin::handlePublicationUnpublishing()
+     *
+     * No-op, same reasoning as handlePublicationPublishing() above.
+     */
+    public function handlePublicationUnpublishing($hookName, $params): bool
+    {
+        return Hook::CONTINUE;
     }
 
     /**
