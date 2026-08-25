@@ -20,9 +20,7 @@ msgstr ""
 "configuring your credentials below."
 
 msgid "plugins.importexport.cnki.description.short"
-msgstr ""
-"This plugin exports your journal's Version of Record articles to CNKI. Content may be downloaded"
-" for later delivery to CNKI, or delivered directly to your account on the CNKI FTP server."
+msgstr "Export journal articles to CNKI."
 
 msgid "plugins.importexport.cnki.ftpLibraryMissing"
 msgstr ""
