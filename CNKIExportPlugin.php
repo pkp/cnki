@@ -298,13 +298,6 @@ class CNKIExportPlugin extends PubObjectsExportPlugin implements HasTaskSchedule
 
         $label = $submissionId . ' VoR' . $publication->getData('versionMajor');
 
-        // A journal using article-number naming must supply one for every article --
-        // falling back to the internal ID here would risk colliding with another
-        // article's own article number.
-        if ($context->getData('enableArticleNumber') && empty($publication->getData('articleNumber'))) {
-            return ['error' => ['plugins.importexport.cnki.export.failure.missingArticleNumber', $label]];
-        }
-
         /** @var GenreDAO $genreDao */
         $genreDao = DAORegistry::getDAO('GenreDAO');
         $genres = [];
@@ -326,27 +319,16 @@ class CNKIExportPlugin extends PubObjectsExportPlugin implements HasTaskSchedule
     }
 
     /**
-     * Build the delivered document's filename (without extension): {acronym}_{articleId}_VoR{versionMajor}.
+     * Build the delivered document's filename (without extension): {acronym}_{submissionId}_VoR{versionMajor}.
      * Only the Version of Record is ever exportable here, so the version-stage code is
      * always "VoR" -- see PubObjectsExportPlugin::getExportableVersionStages().
      */
     public function buildFileName(Submission|Publication $object, Context $context): string
     {
         $publication = $object instanceof Publication ? $object : $object->getCurrentPublication();
-        $fallbackId = $object instanceof Submission ? $object->getId() : $object->getData('submissionId');
-        $articleId = ($context->getData('enableArticleNumber') ? $publication->getData('articleNumber') : null) ?: $fallbackId;
+        $submissionId = $object instanceof Submission ? $object->getId() : $object->getData('submissionId');
 
-        return $this->buildAcronym($context) . '_' . $this->sanitizeForFileName((string) $articleId) . '_VoR' . $publication->getData('versionMajor');
-    }
-
-    /**
-     * Replace characters unsafe for a filename with underscores, collapsing runs into one --
-     * e.g. a migrated article number like "1:137" becomes "1_137", not "1137" (which would
-     * lose the separator and could then collide with another article literally numbered 1137).
-     */
-    protected function sanitizeForFileName(string $value): string
-    {
-        return preg_replace('/[^a-zA-Z0-9\-]+/', '_', $value);
+        return $this->buildAcronym($context) . '_' . $submissionId . '_VoR' . $publication->getData('versionMajor');
     }
 
     /**

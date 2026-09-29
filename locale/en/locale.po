@@ -74,9 +74,6 @@ msgstr "Failed to create the zip file for the export."
 msgid "plugins.importexport.cnki.export.failure.noUploadedJats"
 msgstr "'{$param}' has no uploaded JATS full-text document. CNKI requires one, so it cannot be exported/deposited."
 
-msgid "plugins.importexport.cnki.export.failure.missingArticleNumber"
-msgstr "'{$param}' has no article number set. This journal requires one for export/deposit."
-
 msgid "plugins.generic.cnki.displayName"
 msgstr "CNKI Plugin"
 
