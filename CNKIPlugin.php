@@ -73,6 +73,16 @@ class CNKIPlugin extends PubObjectsExportGenericPlugin
     }
 
     /**
+     * @copydoc PubObjectsExportGenericPlugin::handleIdentityRestamped()
+     *
+     * No-op, same reasoning as handlePublicationPublishing() above.
+     */
+    public function handleIdentityRestamped($hookName, $params): bool
+    {
+        return Hook::CONTINUE;
+    }
+
+    /**
      * @copydoc Plugin::getContextSpecificPluginSettingsFile()
      */
     public function getContextSpecificPluginSettingsFile(): string
